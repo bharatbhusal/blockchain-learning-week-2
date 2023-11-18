@@ -8,8 +8,8 @@ pragma solidity ^0.8.19;
 contract SimpleStorage {
     uint256 balance;
 
-    constructor() {
-        balance = 0;
+    constructor(uint256 initialBalance) {
+        balance = initialBalance;
     }
 
     function getBalance() public view returns (uint256) {

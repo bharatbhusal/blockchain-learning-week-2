@@ -16,7 +16,7 @@ async function sleep(ms) {
 }
 async function main() {
 
-  const simpleStorage = await hre.ethers.deployContract("SimpleStorage", [], {});
+  const simpleStorage = await hre.ethers.deployContract("SimpleStorage", [10], {});
 
   await simpleStorage.waitForDeployment();
 
@@ -29,7 +29,7 @@ async function main() {
 
   await hre.run("verify:verify", {
     address: simpleStorage.target,
-    constructorArguments: []
+    constructorArguments: [10]
   })
 }
 
