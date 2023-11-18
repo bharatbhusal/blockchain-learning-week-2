@@ -3,13 +3,13 @@
 //   - Deploy the contract using the Remix Ethereum IDE.
 
 // SPDX-License-Identifier: MIT
-pragma solidity ^0.8.22;
+pragma solidity ^0.8.19;
 
 contract SimpleStorage {
     uint256 balance;
 
-    constructor(uint256 num) {
-        balance = num;
+    constructor() {
+        balance = 0;
     }
 
     function getBalance() public view returns (uint256) {

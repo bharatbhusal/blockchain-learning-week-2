@@ -1,0 +1,62 @@
+{
+    "target": "0x83a9bAE93Aec1BA4ee5AA36b2406A2d20810A07e",
+    "interface": {
+        "fragments": [
+            {
+                "type": "constructor",
+                "inputs": [],
+                "payable": false,
+                "gas": null
+            },
+            {
+                "type": "function",
+                "inputs": [],
+                "name": "getBalance",
+                "constant": true,
+                "outputs": [
+                    {
+                        "name": "",
+                        "type": "uint256",
+                        "baseType": "uint256",
+                        "components": null,
+                        "arrayLength": null,
+                        "arrayChildren": null
+                    }
+                ],
+                "stateMutability": "view",
+                "payable": false,
+                "gas": null
+            },
+            {
+                "type": "function",
+                "inputs": [
+                    {
+                        "name": "num",
+                        "type": "uint256",
+                        "baseType": "uint256",
+                        "components": null,
+                        "arrayLength": null,
+                        "arrayChildren": null
+                    }
+                ],
+                "name": "setBalance",
+                "constant": false,
+                "outputs": [],
+                "stateMutability": "nonpayable",
+                "payable": false,
+                "gas": null
+            }
+        ],
+        "deploy": {
+            "type": "constructor",
+            "inputs": [],
+            "payable": false,
+            "gas": null
+        },
+        "fallback": null,
+        "receive": false
+    },
+    "runner": "<SignerWithAddress 0x1ce7BbFa437727495710fF8350b398d9Bc8Ec30A>",
+    "filters": {},
+    "fallback": null
+}
