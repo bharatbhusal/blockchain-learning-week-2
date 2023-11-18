@@ -6,23 +6,30 @@
 // global scope, and execute the script.
 const hre = require("hardhat");
 
+async function sleep(ms) {
+  return new Promise((resolve) => {
+    setTimeout(() => {
+      resolve();
+    }, ms)
+  })
+}
+
 async function main() {
-  const currentTimestampInSeconds = Math.round(Date.now() / 1000);
-  const unlockTime = currentTimestampInSeconds + 60;
+  const bharatToken = await hre.ethers.deployContract("TokenBharat", ["Bharat", "BHT", 18, 500], {});
 
-  const lockedAmount = hre.ethers.parseEther("0.001");
-
-  const lock = await hre.ethers.deployContract("Lock", [unlockTime], {
-    value: lockedAmount,
-  });
-
-  await lock.waitForDeployment();
+  await bharatToken.waitForDeployment();
 
   console.log(
-    `Lock with ${ethers.formatEther(
-      lockedAmount
-    )}ETH and unlock timestamp ${unlockTime} deployed to ${lock.target}`
+    `BharatToken contract deployed at ${bharatToken.target}`
   );
+
+  await sleep(55 * 1000)
+
+
+  await hre.run("verify:verify", {
+    address: bharatToken.target,
+    constructorArguments: ["Bharat", "BHT", 18, 500],
+  })
 }
 
 // We recommend this pattern to be able to use async/await everywhere
