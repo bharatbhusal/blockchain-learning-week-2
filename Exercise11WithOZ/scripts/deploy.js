@@ -23,7 +23,7 @@ async function main() {
     `BharatToken contract deployed at ${bharatToken.target}`
   );
 
-  await sleep(55 * 1000)
+  await sleep(60 * 1000)
 
 
   await hre.run("verify:verify", {
