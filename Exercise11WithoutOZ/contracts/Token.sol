@@ -1,63 +1,65 @@
 // SPDX-License-Identifier: MIT
 pragma solidity 0.8.19;
 
+// TokenBharat contract to represent a simple ERC-20 token
 contract TokenBharat {
-    // Public states
+    // Public state variables
     string public name;
     string public symbol;
     uint256 public totalSupply;
     uint8 decimal;
     address public owner;
 
-    // balance of the given address. balance getter function.
+    // Mapping to track balances of addresses
     mapping(address => uint256) public balances;
 
+    // Constructor to initialize the token with initial parameters
     constructor(
         string memory _name,
         string memory _symbol,
         uint8 _decimal,
         uint256 initialSupply
     ) {
+        // Set token details
         name = _name;
         symbol = _symbol;
         decimal = _decimal;
 
-        // total supply of the token is equal to the initially set supply
+        // Set total supply of the token
         totalSupply = initialSupply;
 
-        //owner of the contract owns all the supply of the token.
+        // Owner of the contract initially owns all the tokens
         balances[msg.sender] = totalSupply;
 
-        //TokenBharat contract's constructor caller is the owner of the contract.
+        // Set the owner of the contract to the caller of the constructor
         owner = msg.sender;
     }
 
-    // function to mint the tokens
+    // Function to mint new tokens
     function mint(uint256 amount) public {
-        //only owner can mint.
+        // Only the owner can mint new tokens
         require(msg.sender == owner, "Only owner can mint");
-        //adding the balance to owner's wallet and increasing the supply.
+        // Add the minted tokens to the owner's balance and increase total supply
         balances[msg.sender] += amount;
         totalSupply += amount;
     }
 
-    //function to burn the tokens.
+    // Function to burn tokens
     function burn(uint256 amount) public {
-        //only owner can burn the token. owner should hold enough tokens to burn.
+        // Only the owner can burn tokens, and the owner should have enough tokens
         require(msg.sender == owner, "Only owner can burn");
         require(balances[msg.sender] >= amount, "Insufficient balance");
-
-        //subtracting balance from owner's wallet and total supply
+        // Subtract the burned tokens from the owner's balance and decrease total supply
         balances[msg.sender] -= amount;
         totalSupply -= amount;
     }
 
-    //function to transfer the tokens from one wallet to another.
-    function tranfer(uint256 amount, address to) public {
-        //the receiving wallet should be valid and sender should have enough balance.
+    // Function to transfer tokens from one wallet to another
+    function transfer(uint256 amount, address to) public {
+        // Sender should have enough balance, and the receiver address should be valid
         require(balances[msg.sender] >= amount, "Insufficient balance");
         require(to != address(0), "Invalid address");
-        //subtracting balance from sender and adding in receiver.
+        // Subtract the tokens from the sender and add to the receiver
         balances[msg.sender] -= amount;
         balances[to] += amount;
     }
