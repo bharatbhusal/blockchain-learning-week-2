@@ -3,6 +3,7 @@
 //   - Handle potential errors using both Promises (**`.then`** & **`.catch`**) and Async/Await.
 
 
+
 // Fetch API without Async/Await - no error
 fetch("https://jsonplaceholder.typicode.com/todos/55")
     .then(response => response.json())
